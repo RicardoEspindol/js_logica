@@ -1,7 +1,7 @@
 function imc(altura, peso){
     let result = peso / (altura * altura)
     if(result < 18.5){
-        return 'Abaixo do peso';
+        return 'Baixo peso';
     }else if(result >= 18.5 && result < 25){
         return 'Peso normal';
     }else if(result >= 25 && result < 30){
