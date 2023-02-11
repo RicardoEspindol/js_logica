@@ -181,18 +181,42 @@ const Aluno = [
     }
   ]
 
-function aniversariantes(numb, array){
-    let retorno = [];
-    let pessoa = {};
-    let j = 0;
-    for(let i = 0; i < array.length; i++){
-        if(array[i].nascimento.split('/')[1] === numb){
-            pessoa = array[i].nascimento.split('/')[0] +'/'+ array[i].nascimento.split('/')[1],
-            pessoa = array[i].nome;
-            retorno[j] = pessoa;
-            j++;
-        } 
-    }
-    return retorno;
+  function compareDates(a, b) {
+    const dateA = new Date(a.data.split('/').reverse().join('/'));
+    const dateB = new Date(b.data.split('/').reverse().join('/'));
+    
+    return dateA - dateB;
 }
-console.log(aniversariantes(02, Aluno));
+
+function ordenar_nascimento(array){
+    array.sort(compareDates);
+    return array;
+} 
+
+function aniversariantes( number , array1){
+  let array = [];
+  for(let i = 0; i < array1.length; i++){
+    if(array1[i].nascimento.split('/')[1] === number.toString()){
+      let pessoa = {
+        'data': '',
+        'nome': ''
+      };
+      pessoa.data = array1[i].nascimento.substring(0,5);
+      pessoa.nome = array1[i].nome; 
+      array.push(pessoa);
+
+    }
+    if(array1[i].nascimento.split('/')[1] === '0' + number.toString()){
+      let pessoa = {
+        'data': '',
+        'nome': ''
+      };
+      pessoa.data = array1[i].nascimento.substring(0,5);
+      pessoa.nome = array1[i].nome; 
+      array.push(pessoa);
+
+    }
+  }
+  return ordenar_nascimento(array);;
+}
+console.log(aniversariantes(2, Aluno));

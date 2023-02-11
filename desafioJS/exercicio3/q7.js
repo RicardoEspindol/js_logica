@@ -1,4 +1,4 @@
-const Aluno = [
+const Alunos = [
     {
       "email": "ajgv@discente.ifpe.edu.br",
       "matricula": "20222MTFS0001",
@@ -180,47 +180,29 @@ const Aluno = [
       "turma": 0
     }
   ]
-function mudar_email(Aluno){
-  let arrayRetorno = [];
-  for(let i = 0; i < Aluno.length; i++){
-    Aluno[i].email = Aluno[i].email.replace('@discente.ifpe.edu.br','@gmail.com');
-    arrayRetorno[i] = Aluno[i];
+
+  function estatistica_naturalidade (array){
+    let objRetorno = {
+        'Petrolina - PE': 0,
+        'Belo Jardim - PE': 0,
+        'Olinda - PE': 0,
+        'Paulista - PE': 0,
+        'Recife - PE': 0
+    };
+    for(let i = 0; i < array.length; i++){
+        if(array[i].naturalidade === 'Petrolina - PE'){
+            objRetorno["Petrolina - PE"] += 1;
+        }else if(array[i].naturalidade === 'Belo Jardim - PE'){
+            objRetorno["Belo Jardim - PE"] += 1;
+        }else if(array[i].naturalidade === 'Olinda - PE'){
+            objRetorno["Olinda - PE"] += 1;
+        }else if(array[i].naturalidade === 'Paulista - PE'){
+            objRetorno["Paulista - PE"] += 1;
+        }else {
+            objRetorno["Recife - PE"] += 1;
+        }
+    }
+    return objRetorno;
   }
-  return arrayRetorno;
-}
 
-console.log(mudar_email(Aluno));
-
-
-// function ordenar_nascimento(array){
-//   for(let i = 0; i < array.length; i++){
-//       array[i].nascimento = new Date(array[i].nascimento.split('/').reverse().join('-'));
-//   }
-//   array.sort(function(a,b) { 
-//       return a.nascimento.getTime() - b.nascimento.getTime() 
-//   });
-//   return array;
-// } 
-
-// console.log(ordenar_nascimento(Aluno));
-
-
-// Q4
-// function aniversariantes( n , array1){
-//   let array = [];
-//   for(let i = 0; i < array1.length; i++){
-//     if(array1[i].nascimento.split('/')[1][1] === '2'){
-//       let pessoa = {
-//         'data': '',
-//         'nome': ''
-//       };
-//       //console.log(array1[i].nascimento)
-//       pessoa.data = array1[i].nascimento.substring(0,5);
-//       pessoa.nome = array1[i].nome;
-//       //console.log(pessoa);
-//       array.push(pessoa);
-//     }
-//   }
-//   return array;
-// }
-// console.log(aniversariantes(2, Aluno));
+console.log(estatistica_naturalidade(Alunos));

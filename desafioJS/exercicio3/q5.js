@@ -180,47 +180,24 @@ const Aluno = [
       "turma": 0
     }
   ]
-function mudar_email(Aluno){
-  let arrayRetorno = [];
-  for(let i = 0; i < Aluno.length; i++){
-    Aluno[i].email = Aluno[i].email.replace('@discente.ifpe.edu.br','@gmail.com');
-    arrayRetorno[i] = Aluno[i];
-  }
-  return arrayRetorno;
+
+
+function media_idade(array){
+    let total = 0;
+    let quant = 0;
+    let result = 0;
+    let variavel = 0;
+    for(let i = 0; i < array.length; i++){
+       variavel = Math.floor(array[i].nascimento.split('/')[2]);
+       variavel = parseInt(variavel);
+       //console.log(variavel);
+       if(variavel < 2023){
+        total += (2023 - variavel);
+        quant++; 
+       }
+    }
+    return Math.floor(total/quant);
+   
 }
 
-console.log(mudar_email(Aluno));
-
-
-// function ordenar_nascimento(array){
-//   for(let i = 0; i < array.length; i++){
-//       array[i].nascimento = new Date(array[i].nascimento.split('/').reverse().join('-'));
-//   }
-//   array.sort(function(a,b) { 
-//       return a.nascimento.getTime() - b.nascimento.getTime() 
-//   });
-//   return array;
-// } 
-
-// console.log(ordenar_nascimento(Aluno));
-
-
-// Q4
-// function aniversariantes( n , array1){
-//   let array = [];
-//   for(let i = 0; i < array1.length; i++){
-//     if(array1[i].nascimento.split('/')[1][1] === '2'){
-//       let pessoa = {
-//         'data': '',
-//         'nome': ''
-//       };
-//       //console.log(array1[i].nascimento)
-//       pessoa.data = array1[i].nascimento.substring(0,5);
-//       pessoa.nome = array1[i].nome;
-//       //console.log(pessoa);
-//       array.push(pessoa);
-//     }
-//   }
-//   return array;
-// }
-// console.log(aniversariantes(2, Aluno));
+console.log(media_idade(Aluno));
