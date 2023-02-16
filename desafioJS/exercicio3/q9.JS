@@ -1,5 +1,4 @@
-const Aluno = 
-[
+const Aluno = [
     {
       "email": "ajgv@discente.ifpe.edu.br",
       "matricula": "20222MTFS0001",
@@ -182,37 +181,47 @@ const Aluno =
     }
   ]
 
-function removeAcento (text)
-{       
-    text = text.toLowerCase();                                                         
-    text = text.replace(new RegExp('[ÁÀÂÃ]','gi'), 'a');
-    text = text.replace(new RegExp('[ÉÈÊ]','gi'), 'e');
-    text = text.replace(new RegExp('[ÍÌÎ]','gi'), 'i');
-    text = text.replace(new RegExp('[ÓÒÔÕ]','gi'), 'o');
-    text = text.replace(new RegExp('[ÚÙÛ]','gi'), 'u');
-    text = text.replace(new RegExp('[Ç]','gi'), 'c');
-    return text;                 
-}
-
-
-    function pesquisar_nome(str,array){
-        let rtn = [];
-        for(let i = 0; i < array.length; i++){
-            let cacho = removeAcento(array[i].nome);
-            if(cacho.indexOf(str) !== -1){
-                rtn.push(array[i]);
-            }
-           
-        }
-        return rtn;
+function semestres_entrada(Alunos) {
+    let semestres = [];
+    for (let i = 0; i < Alunos.length; i++) {
+      let ano = Alunos[i].matricula.substring(0, 4);
+      let periodo = Alunos[i].matricula.substring(4, 5);
+      let semestre = ano + "." + periodo;
+      semestres.push(semestre);
     }
-
- console.log(pesquisar_nome('eir', Aluno));
-
- var array = ['a', 'b', 'c'];
-const meuObjeto = {};
-
-for (let i = 0; i < array.length; i++) {
-  meuObjeto[array[i]] = i;
-} 
-console.log(meuObjeto);
+  
+    let semestres_unicos = semestres.filter((item, index) => {//retorna um array sem elementos repetidos
+      return semestres.indexOf(item) === index;
+    });
+  
+    let semestres_entrada = [];
+    for (let i = 0; i < semestres_unicos.length; i++) {
+  
+      let quantidade = 0;
+      for (let j = 0; j < semestres.length; j++) {
+        if (semestres_unicos[i] === semestres[j]) {
+          quantidade++;
+        }
+      }
+  
+      let percentual = ((quantidade / semestres.length) * 100).toFixed(2) + " %";
+      semestres_entrada.push({
+        semestre: semestres_unicos[i],
+        quantidade: quantidade,
+        percentual: percentual,
+      });
+    }
+    //ordenar o array de objetos por semestre
+    semestres_entrada.sort(function (a, b) {
+      if (a.semestre > b.semestre) {
+        return 1;
+      }
+      if (a.semestre < b.semestre) {
+        return -1;
+      }
+      return 0;
+    });
+    return semestres_entrada;
+  }
+  
+console.log(semestres_entrada(Aluno));

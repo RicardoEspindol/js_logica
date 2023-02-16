@@ -204,7 +204,6 @@ function aniversariantes( number , array1){
       pessoa.data = array1[i].nascimento.substring(0,5);
       pessoa.nome = array1[i].nome; 
       array.push(pessoa);
-
     }
     if(array1[i].nascimento.split('/')[1] === '0' + number.toString()){
       let pessoa = {
@@ -214,7 +213,6 @@ function aniversariantes( number , array1){
       pessoa.data = array1[i].nascimento.substring(0,5);
       pessoa.nome = array1[i].nome; 
       array.push(pessoa);
-
     }
   }
   return ordenar_nascimento(array);;

@@ -181,28 +181,75 @@ const Alunos = [
     }
   ]
 
-  function estatistica_naturalidade (array){
-    let objRetorno = {
-        'Petrolina - PE': 0,
-        'Belo Jardim - PE': 0,
-        'Olinda - PE': 0,
-        'Paulista - PE': 0,
-        'Recife - PE': 0
-    };
-    for(let i = 0; i < array.length; i++){
-        if(array[i].naturalidade === 'Petrolina - PE'){
-            objRetorno["Petrolina - PE"] += 1;
-        }else if(array[i].naturalidade === 'Belo Jardim - PE'){
-            objRetorno["Belo Jardim - PE"] += 1;
-        }else if(array[i].naturalidade === 'Olinda - PE'){
-            objRetorno["Olinda - PE"] += 1;
-        }else if(array[i].naturalidade === 'Paulista - PE'){
-            objRetorno["Paulista - PE"] += 1;
-        }else {
-            objRetorno["Recife - PE"] += 1;
-        }
-    }
-    return objRetorno;
+//   function estatistica_naturalidade (array){
+//     let objRetorno = {
+//         'Petrolina - PE': 0,
+//         'Belo Jardim - PE': 0,
+//         'Olinda - PE': 0,
+//         'Paulista - PE': 0,
+//         'Recife - PE': 0
+//     };
+//     for(let i = 0; i < array.length; i++){
+//         if(array[i].naturalidade === 'Petrolina - PE'){
+//             objRetorno["Petrolina - PE"] += 1;
+//         }else if(array[i].naturalidade === 'Belo Jardim - PE'){
+//             objRetorno["Belo Jardim - PE"] += 1;
+//         }else if(array[i].naturalidade === 'Olinda - PE'){
+//             objRetorno["Olinda - PE"] += 1;
+//         }else if(array[i].naturalidade === 'Paulista - PE'){
+//             objRetorno["Paulista - PE"] += 1;
+//         }else {
+//             objRetorno["Recife - PE"] += 1;
+//         }
+//     }
+//     return objRetorno;
+//   }
+// console.log(estatistica_naturalidade(Alunos));
+
+
+// function unique(value, index, self) { 
+//   return self.indexOf(value) === index;
+// }
+
+// function estatistica_naturalidade(array){
+//   let before = [];
+//   for(let i = 0; i < array.length; i++){
+//     before.push(array[i].naturalidade);
+//   }
+//   let after = before.filter(unique);
+//   const meuObjeto = {};
+
+//   for (let i = 0; i < after.length; i++) {
+//     meuObjeto[after[i]] = 0;
+//   } 
+//   //return meuObjeto;
+//   for (let i = 0; i < array.length; i++) {
+//     for (let j = 0; j < after.length; j++) {
+//       if(array[i].naturalidade === after[j]){
+//         meuObjeto += 1;
+//       }
+//     }
+//   }
+//   return meuObjeto;
+
+// }
+
+// console.log(estatistica_naturalidade(Alunos));
+
+function estatistica_naturalidade(Alunos) {
+  let estatistica = {};
+  for (let i = 0; i < Alunos.length; i++) {
+      if (estatistica[Alunos[i].naturalidade]) {
+          estatistica[Alunos[i].naturalidade] += 1;
+      } else {
+          estatistica[Alunos[i].naturalidade] = 1;
+      }
   }
+  return estatistica;
+}
 
 console.log(estatistica_naturalidade(Alunos));
+
+
+
+

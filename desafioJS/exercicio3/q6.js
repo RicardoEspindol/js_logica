@@ -188,7 +188,6 @@ function mudar_email(Aluno){
   }
   return arrayRetorno;
 }
-
 console.log(mudar_email(Aluno));
 
 
